@@ -13,68 +13,65 @@ import {
 import {
   Bell,
   LayoutDashboard,
-  MessageSquare,
-  ShoppingCart,
+  Users,
   CreditCard,
   BarChart2,
   Settings,
   LogOut,
   ChevronDown,
   Menu,
+  MessageSquare,
+  Package,
+  HelpCircle,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-interface DashboardLayoutProps {
+interface AdminLayoutProps {
   children?: React.ReactNode;
 }
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const AdminLayout = ({ children }: AdminLayoutProps) => {
   const location = useLocation();
-  const [notifications, setNotifications] = React.useState<number>(3);
-  const [businessName, setBusinessName] = React.useState<string>(
-    "Spice Garden Restaurant",
+  const [notifications, setNotifications] = React.useState<number>(5);
+  const [adminName, setAdminName] = React.useState<string>("Admin User");
+  const [platformName, setPlatformName] = React.useState<string>(
+    "WhatsApp Business Platform",
   );
-  const [userName, setUserName] = React.useState<string>("Rahul Sharma");
 
   const navigationItems = [
     {
       name: "Dashboard",
-      path: "/dashboard",
+      path: "/admin",
       icon: <LayoutDashboard className="h-5 w-5" />,
     },
     {
-      name: "WhatsApp Setup",
-      path: "/dashboard/whatsapp-setup",
-      icon: <MessageSquare className="h-5 w-5" />,
-    },
-    {
-      name: "Chatbot",
-      path: "/dashboard/chatbot",
-      icon: <MessageSquare className="h-5 w-5" />,
-    },
-    {
-      name: "WhatsApp Bot",
-      path: "/dashboard/whatsapp-bot",
-      icon: <MessageSquare className="h-5 w-5" />,
-    },
-    {
-      name: "Orders",
-      path: "/dashboard/orders",
-      icon: <ShoppingCart className="h-5 w-5" />,
-    },
-    {
-      name: "Payments",
-      path: "/dashboard/payments",
+      name: "Revenue",
+      path: "/admin/revenue",
       icon: <CreditCard className="h-5 w-5" />,
     },
     {
+      name: "Businesses",
+      path: "/admin/businesses",
+      icon: <Users className="h-5 w-5" />,
+    },
+    {
+      name: "Subscriptions",
+      path: "/admin/subscriptions",
+      icon: <Package className="h-5 w-5" />,
+    },
+    {
+      name: "Support",
+      path: "/admin/support",
+      icon: <MessageSquare className="h-5 w-5" />,
+    },
+    {
       name: "Analytics",
-      path: "/dashboard/analytics",
+      path: "/admin/analytics",
       icon: <BarChart2 className="h-5 w-5" />,
     },
     {
       name: "Settings",
-      path: "/dashboard/settings",
+      path: "/admin/settings",
       icon: <Settings className="h-5 w-5" />,
     },
   ];
@@ -88,7 +85,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r bg-card">
         <div className="flex h-16 items-center justify-center border-b px-6">
-          <h1 className="text-xl font-bold text-primary">WhatsApp Business</h1>
+          <h1 className="text-xl font-bold text-primary">Admin Panel</h1>
         </div>
         <div className="flex flex-col flex-1 overflow-y-auto py-4 px-3">
           <nav className="space-y-1">
@@ -107,12 +104,12 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <div className="border-t p-4">
           <div className="flex items-center">
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=business" />
-              <AvatarFallback>SG</AvatarFallback>
+              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" />
+              <AvatarFallback>AD</AvatarFallback>
             </Avatar>
             <div className="ml-3">
-              <p className="text-sm font-medium">{businessName}</p>
-              <p className="text-xs text-muted-foreground">Business Account</p>
+              <p className="text-sm font-medium">{adminName}</p>
+              <p className="text-xs text-muted-foreground">Platform Admin</p>
             </div>
           </div>
         </div>
@@ -131,9 +128,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </SheetTrigger>
         <SheetContent side="left" className="w-64 p-0">
           <div className="flex h-16 items-center justify-center border-b px-6">
-            <h1 className="text-xl font-bold text-primary">
-              WhatsApp Business
-            </h1>
+            <h1 className="text-xl font-bold text-primary">Admin Panel</h1>
           </div>
           <div className="flex flex-col flex-1 overflow-y-auto py-4 px-3">
             <nav className="space-y-1">
@@ -152,14 +147,12 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <div className="border-t p-4">
             <div className="flex items-center">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=business" />
-                <AvatarFallback>SG</AvatarFallback>
+                <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" />
+                <AvatarFallback>AD</AvatarFallback>
               </Avatar>
               <div className="ml-3">
-                <p className="text-sm font-medium">{businessName}</p>
-                <p className="text-xs text-muted-foreground">
-                  Business Account
-                </p>
+                <p className="text-sm font-medium">{adminName}</p>
+                <p className="text-xs text-muted-foreground">Platform Admin</p>
               </div>
             </div>
           </div>
@@ -171,7 +164,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         {/* Header */}
         <header className="flex h-16 items-center justify-between border-b bg-card px-6">
           <h2 className="text-lg font-semibold md:ml-0 ml-10">
-            {businessName}
+            {platformName}
           </h2>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="icon" className="relative">
@@ -186,22 +179,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" />
-                    <AvatarFallback>RS</AvatarFallback>
+                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" />
+                    <AvatarFallback>AD</AvatarFallback>
                   </Avatar>
                   <span className="hidden md:inline-block text-sm font-medium">
-                    {userName}
+                    {adminName}
                   </span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>Admin Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
                 </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HelpCircle className="mr-2 h-4 w-4" />
+                  <span>Help</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
@@ -220,4 +218,4 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   );
 };
 
-export default DashboardLayout;
+export default AdminLayout;
